@@ -1,0 +1,14 @@
+{
+  "feature_id": "feature-id",
+  "title": "Feature title",
+  "last_updated": "YYYY-MM-DD",
+  "features": [
+    {
+      "id": "slice-001",
+      "title": "First vertical slice",
+      "priority": 1,
+      "status": "not_started",
+      "acceptance_ids": []
+    }
+  ]
+}
