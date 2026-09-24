@@ -3,8 +3,13 @@ set -euo pipefail
 
 workflow="${1:-}"
 stage="${2:-}"
-docs_dir="${3:-docs/current}"
-[ -n "$workflow" ] && [ -n "$stage" ] || { echo "Usage: $0 <workflow> <stage> [docs-directory]" >&2; exit 2; }
+docs_dir="${3:-}"
+[ -n "$workflow" ] && [ -n "$stage" ] && [ -n "$docs_dir" ] || { echo "Usage: $0 <workflow> <stage> <docs/product/YYYY-MM-DD-feature>" >&2; exit 2; }
+docs_dir="${docs_dir%/}"
+printf '%s' "$docs_dir" | grep -Eq '^docs/product/[0-9]{4}-[0-9]{2}-[0-9]{2}-[a-z0-9]+(-[a-z0-9]+)*$' || {
+  echo "FAIL: artifact directory must use docs/product/YYYY-MM-DD-feature" >&2
+  exit 1
+}
 [ -d "$docs_dir" ] || { echo "FAIL: missing artifact directory $docs_dir" >&2; exit 1; }
 
 latest() { find "$docs_dir" -maxdepth 1 -type f -name "$1" -print | sort | tail -n 1; }

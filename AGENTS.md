@@ -38,8 +38,8 @@ equivalent `.harness/.agents/` path; `harness/` remains the root entry point.
 - `.agents/skills/` — stage-specific how-to guidance.
 - `harness/templates/` — specs, plans, summaries, and review records.
 - `harness/scripts/` — executable quality and lifecycle checks.
-- `docs/product/` — product capabilities and feature tracker.
-- `docs/current/` — active work artifacts.
+- `docs/product/` — product capabilities, feature tracker, and dated feature
+  workspaces under `docs/product/YYYY-MM-DD-feature/`.
 - `docs/changes/` — durable delivery notes.
 
 ## Workflow routing
@@ -51,8 +51,9 @@ full:
 - Bug, regression, or failing test: `.agents/workflows/bug-fixing.md`.
 - OpenAPI or shared client contract change: `.agents/workflows/api-contract-update.md`.
 - Independent pre-merge review: `.agents/workflows/feature-review.md`.
-- Multi-slice work: use the same workflow with a feature workspace under
-  `docs/product/<date>-<feature>/` and a `feature_list.json`.
+- Every feature, bug, contract update, and review: use a dated workspace under
+  `docs/product/YYYY-MM-DD-feature/`; multi-slice work also maintains a
+  `feature_list.json` there.
 
 ## Non-negotiable rules
 

@@ -32,8 +32,9 @@ stack entry point; `make test` is deterministic and does not require Docker.
 - `harness/scripts/check-full-source-rules.sh` runs formatting, vet, tests,
   architecture checks, OpenAPI checks, and migration checks.
 - `docs/product/product.md` is the lifecycle tracker for larger work.
-- `docs/current/` is the disposable workspace for the current feature or bug;
-  `docs/changes/` is the durable delivery record.
+- `docs/product/YYYY-MM-DD-feature/` is the required, dated workspace for a
+  feature, bug, contract update, or review; `docs/changes/` is the durable
+  delivery record.
 
 ## Context layers
 

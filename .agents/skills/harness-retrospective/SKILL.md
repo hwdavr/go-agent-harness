@@ -118,8 +118,7 @@ platform capabilities while acting as this skill.
 ### 5. Repair specification artifacts (`SPEC_GAP` only)
 
 When the classification is `SPEC_GAP`, repair the active versioned artifacts
-under `docs/current/` (or the relevant multi-slice workspace under
-`docs/product/`):
+in the relevant `docs/product/YYYY-MM-DD-feature/` workspace:
 
 1. **Specification** — clarify the ambiguous, conflicting, or absent
    acceptance criteria while preserving unrelated requirements.
@@ -158,7 +157,7 @@ change. Typical checks are:
 ```bash
 bash -n <changed-shell-scripts>
 bash harness/scripts/check-feature-lifecycle.sh
-bash harness/scripts/check-stage-artifacts.sh <workflow> <stage>
+bash harness/scripts/check-stage-artifacts.sh <workflow> <stage> <docs/product/YYYY-MM-DD-feature>
 bash harness/scripts/check-go-rules.sh
 bash harness/scripts/check-openapi.sh
 bash harness/scripts/check-migrations.sh

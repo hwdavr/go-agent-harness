@@ -35,7 +35,8 @@ else
   echo "OK: project-specific AGENTS.md exists (kept)"
 fi
 
-mkdir -p docs/current docs/changes docs/knowledge
+mkdir -p docs/product docs/changes docs/knowledge
+echo "INFO: create feature artifacts in docs/product/YYYY-MM-DD-feature/"
 bash harness/scripts/check-feature-lifecycle.sh
 bash harness/scripts/check-full-source-rules.sh
 echo "Harness initialization complete."
