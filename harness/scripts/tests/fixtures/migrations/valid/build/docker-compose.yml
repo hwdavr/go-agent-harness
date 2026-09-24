@@ -1,0 +1,5 @@
+services:
+  db:
+    image: postgres:16-alpine
+    volumes:
+      - ./../migrations/0001_init.up.sql:/docker-entrypoint-initdb.d/0001_init.up.sql:ro

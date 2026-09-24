@@ -19,6 +19,7 @@ run_check() {
 run_check "Go source rules" bash "$SCRIPT_DIR/check-go-rules.sh"
 run_check "OpenAPI contract" bash "$SCRIPT_DIR/check-openapi.sh"
 run_check "Migration contract" bash "$SCRIPT_DIR/check-migrations.sh"
+run_check "Harness migration contract" bash "$SCRIPT_DIR/tests/check-migrations-contract.sh"
 
 if [ "$failed" -eq 0 ]; then
   echo
