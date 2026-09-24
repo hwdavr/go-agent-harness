@@ -1,8 +1,10 @@
 # Test plan
 
-## Canonical scope
+## Feature context
 
-Link the approved spec: `spec_v<N>.md#rule-applicability`.
+- Request, issue, or feature reference:
+- Parent spec (complex harness-planning only):
+- Acceptance criteria source: implementation plan or parent spec
 
 ## Feature verification requirements matrix
 
@@ -41,6 +43,5 @@ cases. Load `messaging-testing.md` when Kafka behavior is Required.
 | --- | --- | --- | --- | --- |
 | | | | | |
 
-## Required rule mappings
-
-List evidence for every `Required` row in the canonical spec.
+For a complex feature, link the parent spec's required rule rows. For an ad hoc
+feature or bug fix, record only the constraints triggered by this change.

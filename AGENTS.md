@@ -52,13 +52,17 @@ equivalent `.harness/.agents/` path; `harness/` remains the root entry point.
 Before changing code, identify the task type and read the matching workflow in
 full:
 
-- New endpoint or enhancement: `.agents/workflows/feature-delivery.md`.
+- Ad hoc single-slice endpoint or enhancement: `.agents/workflows/feature-delivery.md`.
+- Complex multi-slice feature planning: `.agents/workflows/harness-planning.md`.
 - Bug, regression, or failing test: `.agents/workflows/bug-fixing.md`.
-- OpenAPI or shared client contract change: `.agents/workflows/api-contract-update.md`.
-- Independent pre-merge review: `.agents/workflows/feature-review.md`.
+- Approved multi-slice feature delivery: `.agents/workflows/harness-generator.md`
+  once for each unblocked slice.
+- Single-slice feature/bug/API review: `.agents/workflows/feature-review.md`.
+- Complex multi-slice harness review: `.agents/workflows/harness-review.md`.
 - Every feature, bug, contract update, and review: use a dated workspace under
   `docs/product/YYYY-MM-DD-feature/`; multi-slice work also maintains a
-  `feature_list.json` there.
+  `feature_list.json` there. Each slice maps its scope to parent requirement,
+  acceptance-criterion, and test-case IDs.
 
 ## Non-negotiable rules
 

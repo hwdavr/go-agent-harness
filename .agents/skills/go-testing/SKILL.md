@@ -6,9 +6,10 @@ not decide the test needs of a feature.
 
 ## Prepare a feature test plan
 
-1. Derive the feature verification requirements matrix from the feature spec and
-   acceptance criteria. Mark each verification type `Required` or `Not required`
-   with a feature-specific reason.
+1. Derive the feature verification requirements matrix from the implementation
+   plan's acceptance criteria, or from the parent spec for complex features.
+   Mark each verification type `Required` or `Not required` with a
+   feature-specific reason.
 2. Generate concrete test cases for every Required row. Each case needs a matrix
    row, acceptance criterion, scenario/assertions, and exact command/selector.
    Every generated case is required evidence for the feature.

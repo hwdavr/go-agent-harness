@@ -79,6 +79,24 @@ or that `make check` implements an automatic fail-fast five-gate pipeline.
 
 Release-loop performance/security/deployment/full-system E2E remains excluded.
 
+## Complex feature planning and multi-slice delivery
+
+Use `harness-planning.md` for a large feature. It first resolves material open
+questions and creates a parent specification for user review. After the spec is
+accepted, it creates and approves the parent implementation plan, test plan, and
+`feature_list.json`. The feature list maps each slice to scope, dependencies,
+parent requirement IDs, acceptance IDs, and required test case IDs. Run
+`harness-generator.md` with a slice ID to deliver that slice. If no slice ID is
+supplied, it selects one ready slice by priority, then slice ID, after all of its
+dependencies pass. Each generator run records its steps and delivery evidence in
+`summary_<slice-id>.MD` directly in the dated feature workspace, then marks the
+slice `passing`, `blocked`, or `needs_fix`.
+
+When all slices are passing, move the parent tracker entry to `To be reviewed`,
+run the lifecycle checker, then use `harness-review.md` for the parent and
+aggregate slice review. Single-slice work continues through `feature-review.md`
+after `feature-delivery.md` or `bug-fixing.md`.
+
 ## Context layers
 
 | Layer | Load when | Contents |

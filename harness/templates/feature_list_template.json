@@ -2,13 +2,17 @@
   "feature_id": "feature-id",
   "title": "Feature title",
   "last_updated": "YYYY-MM-DD",
-  "features": [
+  "slices": [
     {
       "id": "slice-001",
       "title": "First vertical slice",
       "priority": 1,
       "status": "not_started",
-      "acceptance_ids": []
+      "depends_on": [],
+      "scope": "One concise, independently deliverable behavior.",
+      "requirement_ids": ["REQ-001"],
+      "acceptance_ids": ["AC-001"],
+      "test_case_ids": ["TC-001"]
     }
   ]
 }

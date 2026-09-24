@@ -15,30 +15,30 @@ printf '%s' "$docs_dir" | grep -Eq '^docs/product/[0-9]{4}-[0-9]{2}-[0-9]{2}-[a-
 latest() { find "$docs_dir" -maxdepth 1 -type f -name "$1" -print | sort | tail -n 1; }
 
 case "$workflow/$stage" in
-  feature-delivery/requirement-analysis|bug-fixing/requirement-analysis|api-contract-update/requirement-analysis)
-    spec=$(latest 'spec_v*.md')
+  feature-delivery/implementation-plan)
+    plan=$(latest 'implementation_plan_v*.md')
+    tests=$(latest 'test_plan_v*.md')
     summary=$(latest 'summary_v*.md')
-    [ -n "$spec" ] && [ -n "$summary" ] || { echo "FAIL: spec and summary are required" >&2; exit 1; }
-    grep -q '^## Rule Applicability' "$spec" || { echo "FAIL: $spec lacks Rule Applicability" >&2; exit 1; }
-    for id in ARCH API DB MIG TEST SEC OBS PERF DEP DOC; do
-      grep -Eq "^[[:space:]]*\|[[:space:]]*$id[[:space:]]*\|" "$spec" || { echo "FAIL: $spec lacks $id row" >&2; exit 1; }
-    done
+    [ -n "$plan" ] && [ -n "$tests" ] && [ -n "$summary" ] || { echo "FAIL: implementation plan, test plan, and summary are required" >&2; exit 1; }
     ;;
-  feature-delivery/implementation-plan|api-contract-update/implementation-plan)
+  bug-fixing/implementation-plan)
+    plan=$(latest 'implementation_plan_v*.md')
+    tests=$(latest 'test_plan_v*.md')
+    summary=$(latest 'summary_v*.md')
+    [ -n "$plan" ] && [ -n "$tests" ] && [ -n "$summary" ] || { echo "FAIL: implementation plan, test plan, and summary are required" >&2; exit 1; }
+    ;;
+  harness-planning/implementation-plan)
     spec=$(latest 'spec_v*.md')
     plan=$(latest 'implementation_plan_v*.md')
     tests=$(latest 'test_plan_v*.md')
     [ -n "$spec" ] && [ -n "$plan" ] && [ -n "$tests" ] || { echo "FAIL: spec, implementation plan, and test plan are required" >&2; exit 1; }
-    base=$(basename "$spec")
-    grep -Fq "$base#rule-applicability" "$plan" || { echo "FAIL: plan lacks canonical spec reference" >&2; exit 1; }
-    grep -Fq "$base#rule-applicability" "$tests" || { echo "FAIL: test plan lacks canonical spec reference" >&2; exit 1; }
     ;;
   bug-fixing/bug-reproduction)
-    spec=$(latest 'spec_v*.md')
+    plan=$(latest 'implementation_plan_v*.md')
     summary=$(latest 'summary_v*.md')
-    [ -n "$spec" ] && [ -n "$summary" ] || { echo "FAIL: spec and summary are required" >&2; exit 1; }
-    grep -q '^## Reproduction Test' "$spec" || { echo "FAIL: reproduction section is missing" >&2; exit 1; }
-    grep -Eqi 'RED|FAILED' "$spec" || { echo "FAIL: reproduction evidence must be RED/FAILED" >&2; exit 1; }
+    [ -n "$plan" ] && [ -n "$summary" ] || { echo "FAIL: implementation plan and summary are required" >&2; exit 1; }
+    grep -q '^## Reproduction' "$plan" || { echo "FAIL: reproduction section is missing" >&2; exit 1; }
+    grep -Eqi 'RED|FAILED' "$plan" || { echo "FAIL: reproduction evidence must be RED/FAILED" >&2; exit 1; }
     ;;
   *) echo "FAIL: unsupported workflow/stage $workflow/$stage" >&2; exit 2 ;;
 esac
