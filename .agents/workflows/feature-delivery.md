@@ -16,7 +16,10 @@ approval → implementation → tests → quality gate → delivery record.
 2. Create `workspace=docs/product/YYYY-MM-DD-feature/` before writing
    artifacts. Create `implementation_plan_v<N>.md`, `test_plan_v<N>.md`, and
    `summary_v<N>.md` there. Record scope, exclusions, impacted layers, and
-   acceptance criteria in the implementation plan.
+   acceptance criteria in the implementation plan. This workflow delivers one
+   ad hoc feature as one coherent change: do not create `feature_list.json` or
+   split the plan into slices. Route work that needs independently tracked
+   slices to `harness-planning.md`.
 3. Complete the implementation and test plans in the same
    workspace. Read `docs/product/project-capabilities.json` as a project-wide
    tooling inventory only. Derive the feature-wise Required/Not required
@@ -27,8 +30,8 @@ approval → implementation → tests → quality gate → delivery record.
    tooling/tests; a declared capability does not prove runtime support. Run:
    `bash harness/scripts/check-stage-artifacts.sh feature-delivery implementation-plan "$workspace"`.
 4. Stop for explicit user approval before implementation for non-trivial work.
-5. Implement the smallest vertical slice: contract/handler, domain behavior,
-   persistence, then planned tests.
+5. Implement the smallest coherent feature change: contract/handler, domain
+   behavior, persistence, then planned tests.
 6. Execute the planned gates in order; mandatory failure blocks later gates.
    Use the failure/repair/revalidation sequence in `testing-strategy.md`.
    Run `make check` at handoff and `make test-integration` when PostgreSQL

@@ -20,6 +20,11 @@ case "$workflow/$stage" in
     tests=$(latest 'test_plan_v*.md')
     summary=$(latest 'summary_v*.md')
     [ -n "$plan" ] && [ -n "$tests" ] && [ -n "$summary" ] || { echo "FAIL: implementation plan, test plan, and summary are required" >&2; exit 1; }
+    if grep -Eq '^## (Vertical )?[Ss]lices$' "$plan"; then
+      echo "FAIL: feature-delivery plans must describe one coherent feature; use harness-planning for slices" >&2
+      exit 1
+    fi
+    [ ! -f "$docs_dir/feature_list.json" ] || { echo "FAIL: feature-delivery must not create feature_list.json; use harness-planning for slices" >&2; exit 1; }
     ;;
   bug-fixing/implementation-plan)
     plan=$(latest 'implementation_plan_v*.md')

@@ -7,11 +7,12 @@
 - Impacted layers, requirements, and acceptance criteria (use stable `REQ-*` and `AC-*` IDs for complex features):
 - Parent spec (complex harness-planning only):
 
-## Vertical slices
+## Implementation approach
 
-| Slice | Files | Behavior | Verification |
-| --- | --- | --- | --- |
-| 1 |  |  |  |
+Describe the one coherent feature change, including its impacted files or
+layers, observable behavior, and planned verification. Do not split an ad hoc
+`feature-delivery` plan into slices; the parent `harness-planning` workflow is
+the only workflow that creates independently tracked slices.
 
 ## Verification environment
 
