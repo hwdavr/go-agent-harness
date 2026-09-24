@@ -47,10 +47,12 @@ or infrastructure are installed by this environment enhancement.
 
 - [Project capability profile](../docs/product/project-capabilities.json): actual Notes
   App capabilities, existing command limits, and missing verification tooling.
-- [Kafka rules](.agents/rules/messaging-testing.md): optional producer/consumer,
-  schema, retry, duplicate, ordering, and transaction scenario guidance.
-- [Idempotency rules](.agents/rules/idempotency-testing.md): optional HTTP and
-  consumer retry, conflict, restart, and failure scenario guidance.
+- [Kafka rules](.agents/rules/messaging-testing.md) and
+  [Kafka testing skill](.agents/skills/messaging-testing/SKILL.md): applicability
+  policy plus producer/consumer scenario procedure.
+- [Idempotency rules](.agents/rules/idempotency-testing.md) and
+  [idempotency testing skill](.agents/skills/idempotency-testing/SKILL.md):
+  applicability policy plus HTTP/consumer retry procedure.
 - [Test plan template](harness/templates/test-plan-template.md): applicability,
   selected packages/scenarios, real/mocked dependencies, and ordered commands.
 - Each feature's test plan derives its Required/Not required matrix from that

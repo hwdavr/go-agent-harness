@@ -36,8 +36,9 @@ test case listed here is required evidence for the feature. A single business
 scenario may cover multiple matrix rows when it has related assertions.
 
 When idempotency is Required, generate cases only for retry behavior promised by
-the feature contract. Use `idempotency-testing.md` to determine the relevant
-cases. Load `messaging-testing.md` when Kafka behavior is Required.
+the feature contract. Use `.agents/skills/idempotency-testing/SKILL.md` to
+determine the relevant cases. Load `.agents/skills/messaging-testing/SKILL.md`
+when Kafka behavior is Required.
 
 | ID | Matrix row(s) | Acceptance criterion | Scenario and required assertions | Exact command/selector |
 | --- | --- | --- | --- | --- |

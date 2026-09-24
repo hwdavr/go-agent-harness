@@ -96,31 +96,17 @@ claims when those capabilities exist. Record every mocked boundary explicitly.
 
 Every test plan decides applicability for transactions, Kafka producers/consumers,
 idempotency, and resilience. Absence of tests is not a reason to mark a required
-capability irrelevant. Load only triggered additional rules:
+capability irrelevant. Load only triggered capability guidance:
 
-- Messaging/Kafka: `messaging-testing.md`.
-- HTTP/consumer retry guarantees: `idempotency-testing.md`.
+- Messaging/Kafka: policy rule `.agents/rules/messaging-testing.md` and
+  procedure skill `.agents/skills/messaging-testing/SKILL.md`.
+- HTTP/consumer retry guarantees: policy rule
+  `.agents/rules/idempotency-testing.md` and procedure skill
+  `.agents/skills/idempotency-testing/SKILL.md`.
 
-### Idempotency cases to include in feature plans
-
-When a feature promises safe retries or duplicate suppression, mark idempotency
-Required in its requirements matrix. Generate a concrete test case with scenario,
-command/selector, and expected result for each retry behavior the contract
-promises. Do not generate cases for behavior the contract does not promise.
-
-| Case | Expected observable result |
-| --- | --- |
-| Repeat the same key and request | Contract-defined responses; one intended business mutation/effect. |
-| Reuse a key with different request data | Declared conflict behavior; no unintended additional effect. |
-| Use distinct keys/scopes | Independent operations according to the key contract. |
-| Retry after the response is lost | Recover the committed result without repeating the business effect. |
-| Redeliver a message (consumer only) | Consumer contract holds; business-effect count is as specified. |
-| Retry after restart (when durability is promised) | Deduplication survives restart. |
-| Fail and retry (when recovery is promised) | Declared recovery without unintended partial or duplicate effects. |
-| Expire a key (when specified) | Behavior follows the expiry contract using controlled time/setup. |
-
-These are case-design guidance for the Go testing skill, not a second selection
-table in the feature test plan.
+The policy rules decide applicability and evidence semantics. The skills derive
+the concrete scenarios, selectors, fixtures, and evidence for the feature's
+contract. Do not generate cases for behavior the contract does not promise.
 
 For implemented resilience, inject relevant unavailability, timeout, 5xx, invalid
 response, or connection loss; assert deadlines, declared retries/fallbacks,

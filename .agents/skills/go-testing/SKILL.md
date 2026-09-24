@@ -16,18 +16,21 @@ not decide the test needs of a feature.
 3. Use changed packages and affected dependents to choose the smallest relevant
    tests. Expand to component, integration, or regression only when a Required
    row needs that evidence. Record unavailable required tooling as `BLOCKED`.
-4. When idempotency is Required, load `idempotency-testing.md` and generate only
-   cases promised by that operation's retry contract. When messaging is Required,
-   load `messaging-testing.md`.
+4. When idempotency is Required, load the policy rule
+   `.agents/rules/idempotency-testing.md` and the procedure skill
+   `.agents/skills/idempotency-testing/SKILL.md`; generate only cases promised
+   by that operation's retry contract. When messaging is Required, load the
+   policy rule `.agents/rules/messaging-testing.md` and procedure skill
+   `.agents/skills/messaging-testing/SKILL.md`.
 
 Keep these instructions out of the test-plan artifact. The artifact records only
 the completed requirements matrix and generated cases. Stop after an earlier
 mandatory failure; broader suites belong at final regression.
 
-Load `messaging-testing.md` for producer/consumer changes and
-`idempotency-testing.md` for declared HTTP/consumer retry guarantees. These are
-planning rules, not installed broker adapters or suites. Do not implement tests
-or infrastructure when the task only requests harness environment configuration.
+Load the messaging and idempotency policy rules for applicability and their
+companion skills for procedure. They are planning guidance, not installed broker
+adapters or suites. Do not implement tests or infrastructure when the task only
+requests harness environment configuration.
 
 Choose the lowest test layer that proves the behavior. Use `httptest` for real
 router/handler behavior, hand-written fakes for service seams, and the

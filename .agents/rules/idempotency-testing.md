@@ -1,39 +1,22 @@
-# Optional idempotency test planning
+# Idempotency testing policy
 
-Load when an endpoint/consumer promises safe retries or deduplication. This is an
-operation-level contract, not a guarantee for every endpoint. HTTP retries need no Kafka.
+Load this policy when an endpoint or consumer promises safe retries,
+duplicate suppression, or durable replay behavior. Load the companion skill at
+`.agents/skills/idempotency-testing/SKILL.md` for test-case design and execution
+planning.
 
-## Declare the operation contract
+Idempotency is `Required` only for the operation and retry guarantees stated in
+the feature contract. If it is required, missing persistence, failure-injection,
+or runtime evidence is `BLOCKED`. If the contract makes no idempotency promise,
+record `Not required` with a feature-specific reason; do not infer a
+guarantee from a generic checklist.
 
-Record key extraction and scope (such as tenant/operation), request fingerprint,
-duplicate/in-flight/conflict responses, retention/expiry, persistent deduplication,
-completion point, and expected business/downstream effect counts. A fixed HTTP
-status or identical replay response is required only if specified. For consumers,
-declare whether the identity is an event ID or a business key.
+The plan must identify key extraction and scope, request fingerprint,
+duplicate/in-flight/conflict responses, retention or expiry, persistence,
+completion point, and expected business, downstream, and event effect counts.
+Consumer identity must be explicit, such as event ID or business key.
 
-| Scenario | Related observable assertions |
-| --- | --- |
-| Same identity/key/payload repeated | Permitted responses, expected business mutation and downstream/event effect counts. |
-| Same key, different fingerprint | Declared conflict policy and no unintended mutation/effect. |
-| Different keys/identity scopes | Independence according to the declared scope. |
-| Lost response after commit, retry | Contract-defined result recovery; no unintended repeated mutation. |
-| Restart, retry | Durable deduplication survives restart when promised. |
-| Failure while in progress | Recovery policy; no unintended partial or duplicate state. |
-| Consumer redelivery | Expected business effects despite repeated delivery; acknowledgment-failure recovery where relevant. |
-| Key expiry | Declared retention behavior using controlled time or deterministic setup. |
-
-Use real isolated persistence for persistence claims. Assert result identity/state,
-row/business counts, and relevant external/event effects; matching
-HTTP responses alone is insufficient. A controlled external receiver can count
-attempts but does not prove actual downstream deduplication; record that boundary.
-Separate transport duplicates from duplicate business effects.
-
-Use deterministic hooks for relevant failure points: before mutation,
-after commit before response/publish, after processing before acknowledgment.
-DB and broker atomicity require a real recovery mechanism and its tests. Bound
-waits and avoid long expiry sleeps.
-
-Map requirement → scenario → assertions → command → evidence. Missing required
-tests/probes/runtime are `BLOCKED`; absence of an idempotency guarantee can be
-`NOT_APPLICABLE` with a reason. Do not retrofit business behavior merely to satisfy
-this generic checklist.
+Matching HTTP responses alone do not prove idempotency. Evidence must assert
+observable state and effect counts, distinguish transport duplicates from
+business duplicates, use deterministic failure points, and record real versus
+mocked boundaries.

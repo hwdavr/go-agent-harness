@@ -29,9 +29,10 @@ Module map:
 | L3 | When needed | OpenAPI, migrations, knowledge, and feature evidence |
 
 For verification planning, read `docs/product/project-capabilities.json` and
-the test-plan template. Load `messaging-testing.md` for event producers/consumers and
-`idempotency-testing.md` for promised retry guarantees. These reusable rules do
-not install tests or infrastructure; required missing checks are blocked evidence.
+the test-plan template. Load the messaging and idempotency policy rules for
+applicability, and their companion skills for event or retry test procedures.
+These reusable guides do not install tests or infrastructure; required missing
+checks are blocked evidence.
 
 If the host disallows the conventional root `.agents` symlink, use the
 equivalent `.harness/.agents/` path; `harness/` remains the root entry point.
