@@ -1,0 +1,4 @@
+interface:
+  display_name: "Harness Retrospective"
+  short_description: "Diagnose and harden backend harness failures"
+  default_prompt: "Use $harness-retrospective to diagnose and harden a backend harness-environment failure without changing application, contract, or external-service behavior."
