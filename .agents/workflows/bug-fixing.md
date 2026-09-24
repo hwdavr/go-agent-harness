@@ -15,6 +15,15 @@ the symptom before proving the failure.
 3. Write `implementation_plan_v<N>.md` in the same workspace with the root
    cause, minimal fix, and regression evidence. Stop for user approval before
    changing production code.
-4. Implement the minimal fix, then run the reproduction GREEN, the relevant
-   package tests, and `make check`.
+   Use the test-plan template and project capability profile for selectors,
+   optional messaging/idempotency rules, fixtures, and missing evidence. Derive
+   the test requirements matrix from the defect's expected/actual behavior, then
+   generate the exact regression and related cases for its Required rows.
+4. Implement the minimal fix, rerun the failed scenario and directly related
+   tests, then revalidate mandatory static/unit gates for the changed source
+   before proceeding to component/integration and broader regression. Run
+   `make check` at handoff. Stop progression on failure; preserve receipts with
+   safe expected/actual details using `harness/verification-evidence.md`.
+   Missing required tests/runtime are BLOCKED, never a passing fix. Do not
+   weaken tests unless requirements changed or the test is demonstrably wrong.
 5. Record the regression test and any remaining risk in `docs/changes/`.

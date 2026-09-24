@@ -28,6 +28,11 @@ Module map:
 | L2 | Per workflow stage | The selected workflow skill and triggered rules |
 | L3 | When needed | OpenAPI, migrations, knowledge, and feature evidence |
 
+For verification planning, read `docs/product/project-capabilities.json` and
+the test-plan template. Load `messaging-testing.md` for event producers/consumers and
+`idempotency-testing.md` for promised retry guarantees. These reusable rules do
+not install tests or infrastructure; required missing checks are blocked evidence.
+
 If the host disallows the conventional root `.agents` symlink, use the
 equivalent `.harness/.agents/` path; `harness/` remains the root entry point.
 
@@ -72,6 +77,10 @@ full:
   production code.
 - Run `make check` before handoff. A warning, skipped test, or unavailable
   database is not passing evidence for a claim that requires that runtime.
+- Follow static → targeted unit → component/API → integration → regression,
+  stopping after an earlier mandatory failure. Record scenario/assertion evidence
+  using `harness/verification-evidence.md`; the existing broad `make check` is
+  not proof that all five gates or optional capabilities executed.
 - For non-trivial work, obtain approval of the versioned implementation plan
   before implementation and record command, status, and evidence in the
   versioned summary.

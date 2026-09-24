@@ -1,0 +1,44 @@
+{
+  "format_version": 1,
+  "kind": "verification_evidence_template",
+  "run_id": null,
+  "result": "NOT_RUN",
+  "source": {"revision": null, "working_tree_fingerprint": null, "artifact": null},
+  "plan": null,
+  "selection": {"changed_paths": [], "packages": [], "dependent_packages": [], "scenario_ids": [], "reason": null},
+  "environment": {"identity": null, "real_dependencies": [], "mocked_boundaries": [], "cleanup_result": "NOT_RUN"},
+  "gates": [
+    {"id": "static", "required": true, "result": "NOT_RUN", "reason": null, "checks": []},
+    {"id": "unit", "required": true, "result": "NOT_RUN", "reason": null, "checks": []},
+    {"id": "component", "required": true, "result": "NOT_RUN", "reason": null, "checks": []},
+    {"id": "integration", "required": true, "result": "NOT_RUN", "reason": null, "checks": []},
+    {"id": "regression", "required": true, "result": "NOT_RUN", "reason": null, "checks": []}
+  ],
+  "check_record_template": {
+    "id": null,
+    "command_argv": [],
+    "working_directory": null,
+    "result": "NOT_RUN",
+    "exit_code": null,
+    "started_at": null,
+    "duration_ms": null,
+    "executed_test_count": null,
+    "skipped_test_count": null,
+    "cached": null,
+    "artifacts": [],
+    "reason": null
+  },
+  "scenarios": [],
+  "scenario_record_template": {
+    "id": null,
+    "requirement": null,
+    "gate": null,
+    "check_ids": [],
+    "result": "NOT_RUN",
+    "assertions": [
+      {"id": null, "boundary": null, "result": "NOT_RUN", "expected": null, "actual": null, "artifact": null, "observation_window_ms": null}
+    ],
+    "failure": {"message": null, "likely_affected_paths": [], "next_action": null}
+  },
+  "repair": {"previous_run_id": null, "source_changed": null, "failed_scenario_ids": [], "related_scenario_ids": [], "mandatory_gates_revalidated": []}
+}

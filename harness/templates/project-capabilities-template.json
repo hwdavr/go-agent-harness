@@ -1,0 +1,16 @@
+{
+  "format_version": 1,
+  "kind": "planning_profile_template",
+  "project": "REPLACE_WITH_PROJECT_NAME",
+  "execution": "Planning metadata; list actual installed tools below. This file does not execute checks.",
+  "capabilities": {
+    "http": {"declared": false, "reason": "Decide from project architecture", "rules": ["api-contract.md"]},
+    "postgresql": {"declared": false, "reason": "Decide from project architecture", "rules": ["testing-strategy.md"]},
+    "kafka": {"declared": false, "reason": "Decide producer/consumer requirements", "rules": ["messaging-testing.md"]},
+    "idempotency": {"declared": false, "reason": "Decide per-operation retry guarantees", "rules": ["idempotency-testing.md"]},
+    "redis": {"declared": false, "reason": "Decide from project architecture", "rules": []}
+  },
+  "existing_checks": [],
+  "verification_gaps": ["Inventory executable checks before claiming verification support"],
+  "optional_capability_policy": "Decide all capabilities from requirements; replace these template defaults. Required but unavailable tests/tools/runtime are BLOCKED."
+}
